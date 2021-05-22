@@ -1,0 +1,68 @@
+img {
+    inline-size: 250px;
+    block-size: 250px;
+
+    object-fit: cover;
+    border-radius: 1ex;
+    overflow: hidden;
+
+    background-image: 
+    linear-gradient(
+      to bottom, 
+      hsl(0 0% 40%), 
+      hsl(0 0% 20%)
+    );
+}
+
+.horizontal-media-scroller {
+    display: grid;
+    grid-auto-flow: column;
+    margin: 0;
+    min-width: 150px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+
+    padding-inline: 20px;
+    scroll-padding-inline: 20px;
+    padding-block: calc(20px / 2);
+
+    scroll-snap-type: inline mandatory;
+}
+
+.horizontal-media-scroller > li {
+    display: inline-block;
+}
+
+.horizontal-media-scroller figure {
+    scroll-snap-align: start;
+}
+
+.horizontal-media-scroller picture {
+    inline-size: 150px;
+    block-size: 150px;
+}
+
+.horizontal-media-scroller > li:last-of-type figure {
+    position: relative;
+}
+
+.horizontal-media-scroller > li:last-of-type figure::after {
+    content: "";
+    position: absolute;
+
+    inline-size: 20px;
+    block-size: 100%;
+
+    inset-block-start: 0;
+    inset-inline-end: calc(20px * -1);
+}
+
+.horizontal-media-scroller:focus {
+    outline-offset: 7px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .horizontal-media-scroller:f {
+    transition: outline-offset .25s ease;
+    }
+}
